@@ -1,14 +1,26 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>{% block title %}GlowGuide{% endblock %}</title>
+    <title>GlowGuide</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Raleway+Dots&family=Raleway:ital,wght@0,100..900;1,100..900&family=Roboto+Slab:wght@100..900&display=swap"
+      rel="stylesheet"
+    />
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
       rel="stylesheet"
       integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
       crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{% static 'css/style.css' %}"
     />
   </head>
   <body class="d-flex flex-column min-vh-100">
@@ -36,7 +48,7 @@
                 <a
                   class="nav-link dropdown-toggle"
                   href="#"
-                  id="navbarDropdownMenuLink"
+                  id="navbarDropdownMenuLink1"
                   role="button"
                   data-bs-toggle="dropdown"
                   aria-expanded="false"
@@ -45,7 +57,7 @@
                 </a>
                 <ul
                   class="dropdown-menu"
-                  aria-labelledby="navbarDropdownMenuLink"
+                  aria-labelledby="navbarDropdownMenuLink1"
                 >
                   <li><a class="dropdown-item" href="#">My Products</a></li>
                   <li><a class="dropdown-item" href="#">Add a Product</a></li>
@@ -55,7 +67,7 @@
                 <a
                   class="nav-link dropdown-toggle"
                   href="#"
-                  id="navbarDropdownMenuLink"
+                  id="navbarDropdownMenuLink2"
                   role="button"
                   data-bs-toggle="dropdown"
                   aria-expanded="false"
@@ -64,9 +76,9 @@
                 </a>
                 <ul
                   class="dropdown-menu dropdown-menu-end"
-                  aria-labelledby="navbarDropdownMenuLink"
+                  aria-labelledby="navbarDropdownMenuLink2"
                 >
-                  <li><a class="dropdown-item" href="#">My Routines</a></li>
+                  <li><a class="dropdown-item" href="{% url 'index' %}">My Routines</a></li>
                   <li><a class="dropdown-item" href="#">Add a Routine</a></li>
                 </ul>
               </li>
@@ -76,7 +88,9 @@
       </nav>
     </header>
     <main class="flex-fill">{% block content %} {% endblock %}</main>
-    <footer class="mt-auto bg-light text-center">All Rights Reserved &copy; 2024 GlowGuide</footer>
+    <footer class="mt-auto bg-light text-center">
+      All Rights Reserved &copy; 2024 GlowGuide
+    </footer>
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
