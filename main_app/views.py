@@ -46,3 +46,7 @@ class ProductCreate(CreateView):
 class ProductUpdate(UpdateView):
     model = Product
     fields = '__all__'
+
+class ProductDelete(DeleteView):
+    model = Product
+    success_url = '/products'

@@ -3,12 +3,18 @@
 <h1>Your Routines</h1>
 
 {% for routine in routines %}
-<div class="card" style="width: 18rem">
-  <a href="{% url 'detail' routine.id %}">
-    <div class="card-body">
-      <h5 class="card-title">{{ routine.name }}</h5>
-      <p class="card-text">{{ routine.description }}</p>
+<div class="row justify-content-center">
+  <div class="col-md-6">
+    <div class="card">
+      <div class="card-body">
+        <a href="{% url 'detail' routine.id %}">
+          <div class="card-body">
+            <h5 class="card-title">{{ routine.name }}</h5>
+            <p class="card-text">{{ routine.description }}</p>
+          </div>
+        </a>
+      </div>
     </div>
-  </a>
+  </div>
 </div>
 {% endfor %} {% endblock %}
