@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h1>Product Details</h1>
+
+<div class="row justify-content-center">
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">{{ product.name }}</h5>
+                <p class="card-text">{{ product.brand }}</p>
+                <p class="card-text">{{ product.get_category_display }}</p>
+                <p class="card-text">{{ product.directions }}</p>
+            </div>
+            <div class="card-footer">
+                <a href="#" class="btn">Edit</a>
+                <a href="#" class="btn">Delete</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
