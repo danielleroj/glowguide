@@ -23,7 +23,7 @@ class Product(models.Model):
     directions = models.TextField(null=True, blank=True)
 
     def __str__(self):
-        return f'{self.get_category_display()}'
+        return self.name
 
 class Routine(models.Model):
     name = models.CharField(max_length=100)

@@ -3,14 +3,47 @@
 <h1>{{ routine.name }}</h1>
 
 <div class="card">
-    <div class="card-body">
-      <h5 class="card-title">Routine Details</h5>
-      <p class="card-text">{{ routine.description }}</p>
-    </div>
+  <div class="card-body">
+    <h5 class="card-title">Routine Details</h5>
+    <p class="card-text">{{ routine.description }}</p>
+  </div>
+  <div class="card-body">
+    <a href="{% url 'routines_update' routine.id %}" class="btn">Edit</a>
+    <a href="{% url 'routines_delete' routine.id %}" class="btn btn-danger"
+      >Delete</a
+    >
+  </div>
+</div>
+
+<hr />
+<div class="row">
+  <div class="col-6">
+    <h3>Products</h3>
+    {% if routine.products.count %} {% for product in routine.products.all %}
+    <div class="card">
       <div class="card-body">
-      <a href="{% url 'routines_update' routine.id %}" class="btn">Edit</a>
-      <a href="{% url 'routines_delete' routine.id %}" class="btn btn-danger">Delete</a>
+        <h5 class="card-title">{{ product.name }}</h5>
+        <a
+          href="#info{{ product.id }}"
+          class="btn"
+          data-bs-toggle="collapse"
+          aria-expanded="false"
+          aria-controls="info{{ product.id }}"
+          >More Info</a
+        >
+      </div>
+      <div id="info{{ product.id }}" class="collapse">
+        <div class="card-body">
+          <p>{{ product.brand }}</p>
+          <p>{{ product.get_category_display }}</p>
+          <p>{{ product.directions }}</p>
+        </div>
+      </div>
     </div>
+    {% endfor %} {% else %}
+    <h5>You don't have any products in this routine yet!</h5>
+    {% endif %}
+  </div>
 </div>
 
 {% endblock %}
