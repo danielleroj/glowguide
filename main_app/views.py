@@ -38,3 +38,7 @@ class ProductList(ListView):
 
 class ProductDetail(DetailView):
     model = Product
+
+class ProductCreate(CreateView):
+    model = Product
+    fields = '__all__'
