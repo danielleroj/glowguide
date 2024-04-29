@@ -42,3 +42,7 @@ class ProductDetail(DetailView):
 class ProductCreate(CreateView):
     model = Product
     fields = '__all__'
+
+class ProductUpdate(UpdateView):
+    model = Product
+    fields = '__all__'
