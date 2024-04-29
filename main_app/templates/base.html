@@ -59,7 +59,7 @@
                   class="dropdown-menu"
                   aria-labelledby="navbarDropdownMenuLink1"
                 >
-                  <li><a class="dropdown-item" href="#">My Products</a></li>
+                  <li><a class="dropdown-item" href="{% url 'product_index' %}">My Products</a></li>
                   <li><a class="dropdown-item" href="#">Add a Product</a></li>
                 </ul>
               </li>
@@ -79,7 +79,7 @@
                   aria-labelledby="navbarDropdownMenuLink2"
                 >
                   <li><a class="dropdown-item" href="{% url 'index' %}">My Routines</a></li>
-                  <li><a class="dropdown-item" href="#">Add a Routine</a></li>
+                  <li><a class="dropdown-item" href="{% url 'routines_create' %}">Add a Routine</a></li>
                 </ul>
               </li>
             </ul>

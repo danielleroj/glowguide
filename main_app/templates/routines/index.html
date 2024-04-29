@@ -4,7 +4,7 @@
 
 {% for routine in routines %}
 <div class="card" style="width: 18rem">
-  <a href="/routines/{{ routine.id }}">
+  <a href="{% url 'detail' routine.id %}">
     <div class="card-body">
       <h5 class="card-title">{{ routine.name }}</h5>
       <p class="card-text">{{ routine.description }}</p>

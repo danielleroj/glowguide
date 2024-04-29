@@ -1,5 +1,7 @@
 from django.shortcuts import render
-from .models import Routine
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from django.views.generic import ListView
+from .models import Routine, Product
 
 # Create your views here.
 
@@ -18,3 +20,18 @@ def routines_index(request):
 def routines_detail(request, routine_id):
     routine = Routine.objects.get(id=routine_id)
     return render(request, 'routines/detail.html', { 'routine': routine })
+
+class RoutineCreate(CreateView):
+    model = Routine
+    fields = '__all__'
+
+class RoutineUpdate(UpdateView):
+    model = Routine
+    fields = '__all__'
+
+class RoutineDelete(DeleteView):
+    model = Routine
+    success_url = '/routines'
+
+class ProductList(ListView):
+    model = Product

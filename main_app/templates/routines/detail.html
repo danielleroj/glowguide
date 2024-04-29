@@ -7,6 +7,10 @@
       <h5 class="card-title">Routine Details</h5>
       <p class="card-text">{{ routine.description }}</p>
     </div>
+      <div class="card-body">
+      <a href="{% url 'routines_update' routine.id %}" class="btn">Edit</a>
+      <a href="{% url 'routines_delete' routine.id %}" class="btn btn-danger">Delete</a>
+    </div>
 </div>
 
 {% endblock %}
