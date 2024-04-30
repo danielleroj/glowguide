@@ -1,3 +1,5 @@
+from django.forms import BaseModelForm
+from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic import ListView, DetailView
@@ -49,6 +51,9 @@ def add_photo(request, product_id):
 class RoutineCreate(CreateView):
     model = Routine
     fields = '__all__'
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super().form_valid(form)
 
 class RoutineUpdate(UpdateView):
     model = Routine
