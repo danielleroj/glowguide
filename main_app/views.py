@@ -1,5 +1,3 @@
-from django.forms import BaseModelForm
-from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic import ListView, DetailView
@@ -12,20 +10,6 @@ from .models import Routine, Product, Photo
 import boto3, uuid
 
 # Create your views here.
-def signup(request):
-    erorr_message = ''
-    if request.method == 'POST':
-        form = UserCreationForm(request.POST)
-        if form.is_valid():
-            user = form.save()
-            login(request, user)
-            return redirect('index')
-        else:
-            erorr_message = 'Invalid sign up - try again'
-    form = UserCreationForm()
-    context = {'form': form, 'error_mesage': erorr_message}
-    return render(request, 'registration/signup.html', context)
-
 def home(request):
     return render(request, 'home.html')
 
@@ -67,6 +51,20 @@ def add_photo(request, product_id):
       print('Error uploading to S3')
       print(e)
     return redirect('products_detail', pk=product_id)
+  
+def signup(request):
+    error_message = ''
+    if request.method == 'POST':
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            login(request, user)
+            return redirect('index')
+        else:
+            erorr_message = 'Invalid sign up - try again'
+    form = UserCreationForm()
+    context = {'form': form, 'error_mesage': error_message}
+    return render(request, 'registration/signup.html', context)
 
 class RoutineCreate(LoginRequiredMixin, CreateView):
     model = Routine
@@ -85,6 +83,10 @@ class RoutineDelete(LoginRequiredMixin, DeleteView):
 
 class ProductList(LoginRequiredMixin, ListView):
     model = Product
+    product_list = 'myapp/product_list.html'
+
+    def get_queryset(self):
+        return Product.objects.filter(user=self.request.user)
 
 class ProductDetail(LoginRequiredMixin, DetailView):
     model = Product

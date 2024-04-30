@@ -3,6 +3,9 @@ from django.urls import reverse
 from django.contrib.auth.models import User
 
 # Create your models here.
+# class Profile(models.Model):
+#     user = models.OneToOneField(User, on_delete=models.CASCADE)
+
 class Product(models.Model):
     CATEGORIES = (
     ('AT', 'Acne Treatments'),
@@ -22,6 +25,7 @@ class Product(models.Model):
     brand = models.CharField(max_length=100)
     category = models.CharField(max_length=2, choices=CATEGORIES, default='AT')
     directions = models.TextField(null=True, blank=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.name
