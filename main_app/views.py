@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect
+from .forms import SkinTypeForm
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic import ListView, DetailView
 from django.contrib.auth import login
@@ -65,6 +66,19 @@ def signup(request):
     form = UserCreationForm()
     context = {'form': form, 'error_mesage': error_message}
     return render(request, 'registration/signup.html', context)
+
+@login_required
+def skin_type_quiz(request):
+    if request.method == 'POST':
+        form = SkinTypeForm(request.POST, instance=request.user.profile)
+        if form.is_valid():
+            form.save()
+            return redirect('some_view_name')
+    else:
+        form = SkinTypeForm(instance=request.user.profile)
+
+    return render(request, 'your_template.html', {'form': form})
+
 
 class RoutineCreate(LoginRequiredMixin, CreateView):
     model = Routine
