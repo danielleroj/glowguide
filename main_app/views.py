@@ -50,7 +50,7 @@ def add_photo(request, product_id):
 
 class RoutineCreate(CreateView):
     model = Routine
-    fields = '__all__'
+    fields = ['name', 'description', 'products']
     def form_valid(self, form):
         form.instance.user = self.request.user
         return super().form_valid(form)
