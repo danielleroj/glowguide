@@ -5,6 +5,8 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic import ListView, DetailView
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import Routine, Product, Photo
 
 import boto3, uuid
@@ -30,18 +32,21 @@ def home(request):
 def about(request):
     return render(request, 'about.html')
 
+@login_required
 def routines_index(request):
     routines = Routine.objects.filter(user=request.user)
     return render(request, 'routines/index.html', {
         'routines': routines
     })
 
+@login_required
 def routines_detail(request, routine_id):
     routine = Routine.objects.get(id=routine_id)
     return render(request, 'routines/detail.html', { 'routine': routine })
 
 import os
 
+@login_required
 def add_photo(request, product_id):
   #capture form input
   photo_file =  request.FILES.get('photo-file', None)
@@ -63,35 +68,35 @@ def add_photo(request, product_id):
       print(e)
     return redirect('products_detail', pk=product_id)
 
-class RoutineCreate(CreateView):
+class RoutineCreate(LoginRequiredMixin, CreateView):
     model = Routine
     fields = ['name', 'description', 'products']
     def form_valid(self, form):
         form.instance.user = self.request.user
         return super().form_valid(form)
 
-class RoutineUpdate(UpdateView):
+class RoutineUpdate(LoginRequiredMixin, UpdateView):
     model = Routine
     fields = ['name', 'description']
 
-class RoutineDelete(DeleteView):
+class RoutineDelete(LoginRequiredMixin, DeleteView):
     model = Routine
     success_url = '/routines'
 
-class ProductList(ListView):
+class ProductList(LoginRequiredMixin, ListView):
     model = Product
 
-class ProductDetail(DetailView):
+class ProductDetail(LoginRequiredMixin, DetailView):
     model = Product
 
-class ProductCreate(CreateView):
-    model = Product
-    fields = '__all__'
-
-class ProductUpdate(UpdateView):
+class ProductCreate(LoginRequiredMixin, CreateView):
     model = Product
     fields = '__all__'
 
-class ProductDelete(DeleteView):
+class ProductUpdate(LoginRequiredMixin, UpdateView):
+    model = Product
+    fields = '__all__'
+
+class ProductDelete(LoginRequiredMixin, DeleteView):
     model = Product
     success_url = '/products'
