@@ -1,23 +1,41 @@
-{% extends 'base.html' %}
-{% block content %}
+{% extends 'base.html' %} {% block content %}
 
 <h1>Product Details</h1>
 
 <div class="row justify-content-center">
-    <div class="col-md-6">
-        <div class="card">
-            <div class="card-body">
-                <h5 class="card-title">{{ product.name }}</h5>
-                <p class="card-text">{{ product.brand }}</p>
-                <p class="card-text">{{ product.get_category_display }}</p>
-                <p class="card-text">{{ product.directions }}</p>
-            </div>
-            <div class="card-footer">
-                <a href="{% url 'products_update' product.id %}" class="btn">Edit</a>
-                <a href="{% url 'products_delete' product.id %}" class="btn">Delete</a>
-            </div>
-        </div>
+  <div class="col-md-6">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">{{ product.name }}</h5>
+        <p class="card-text">{{ product.brand }}</p>
+        <p class="card-text">{{ product.get_category_display }}</p>
+        <p class="card-text">{{ product.directions }}</p>
+      </div>
+      <div class="card-footer">
+        <a href="{% url 'products_update' product.id %}" class="btn">Edit</a>
+        <a href="{% url 'products_delete' product.id %}" class="btn">Delete</a>
+      </div>
     </div>
+    {% for photo in product.photo_set.all %}
+    <img
+      src="{{ photo.url }}"
+      alt="{{ product.name }}"
+      class="card-img-top img-fluid"
+    />
+    {% empty %}
+    <div class="card">No Photo Uploaded</div>
+    {% endfor %}
+
+    <form
+      action="{% url 'add_photo' product_id=product.pk %}"
+      method="POST"
+      enctype="multipart/form-data"
+    >
+      {% csrf_token %}
+      <input type="file" name="photo-file" id="" />
+      <button type="submit" class="btn">Upload Photo</button>
+    </form>
+  </div>
 </div>
 
 {% endblock %}

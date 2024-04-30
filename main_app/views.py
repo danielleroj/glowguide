@@ -1,7 +1,9 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic import ListView, DetailView
-from .models import Routine, Product
+from .models import Routine, Product, Photo
+
+import boto3, uuid
 
 # Create your views here.
 
@@ -20,6 +22,29 @@ def routines_index(request):
 def routines_detail(request, routine_id):
     routine = Routine.objects.get(id=routine_id)
     return render(request, 'routines/detail.html', { 'routine': routine })
+
+import os
+
+def add_photo(request, product_id):
+  #capture form input
+  photo_file =  request.FILES.get('photo-file', None)
+  #check if file was provided
+  if photo_file:
+    #setup an s3 uploader client
+    s3 = boto3.client('s3')
+    #generate a unique name for the file using uuid library
+    key = uuid.uuid4().hex[:6] + photo_file.name[photo_file.name.rfind('.'):]
+    #build a url path based on the base url, the bucket name and the photo file name
+    #error handle
+    try:
+      bucket = os.environ['S3_BUCKET']
+      s3.upload_fileobj(photo_file, bucket, key)
+      url = f'{os.environ["S3_BASE_URL"]}{bucket}/{key}'
+      Photo.objects.create(url=url, product_id=product_id)
+    except Exception as e:
+      print('Error uploading to S3')
+      print(e)
+    return redirect('products_detail', pk=product_id)
 
 class RoutineCreate(CreateView):
     model = Routine
