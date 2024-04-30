@@ -41,6 +41,7 @@
           </button>
           <div class="collapse navbar-collapse" id="navbarNavDropdown">
             <ul class="navbar-nav ms-auto">
+              {% if user.is_authenticated %}
               <li class="nav-item">
                 <a class="nav-link" href="{% url 'about' %}">About</a>
               </li>
@@ -59,8 +60,16 @@
                   class="dropdown-menu"
                   aria-labelledby="navbarDropdownMenuLink1"
                 >
-                  <li><a class="dropdown-item" href="{% url 'product_index' %}">My Products</a></li>
-                  <li><a class="dropdown-item" href="{% url 'products_create' %}">Add a Product</a></li>
+                  <li>
+                    <a class="dropdown-item" href="{% url 'product_index' %}"
+                      >My Products</a
+                    >
+                  </li>
+                  <li>
+                    <a class="dropdown-item" href="{% url 'products_create' %}"
+                      >Add a Product</a
+                    >
+                  </li>
                 </ul>
               </li>
               <li class="nav-item dropdown">
@@ -78,10 +87,26 @@
                   class="dropdown-menu dropdown-menu-end"
                   aria-labelledby="navbarDropdownMenuLink2"
                 >
-                  <li><a class="dropdown-item" href="{% url 'index' %}">My Routines</a></li>
-                  <li><a class="dropdown-item" href="{% url 'routines_create' %}">Add a Routine</a></li>
+                  <li>
+                    <a class="dropdown-item" href="{% url 'index' %}"
+                      >My Routines</a
+                    >
+                  </li>
+                  <li>
+                    <a class="dropdown-item" href="{% url 'routines_create' %}"
+                      >Add a Routine</a
+                    >
+                  </li>
                 </ul>
               </li>
+              <li><form action="{% url 'logout' %}" method="post" style="display: inline;">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-link nav-link" style="padding: 0; border: none; background: none;">Logout</button>
+            </form>
+            </li>
+              {% else %}
+              <li><a href="{% url 'login' %}">Log In</a></li>
+              {% endif %}
             </ul>
           </div>
         </div>
