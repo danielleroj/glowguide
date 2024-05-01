@@ -44,6 +44,28 @@
     <h5>You don't have any products in this routine yet!</h5>
     {% endif %}
   </div>
+  <div class="col-6">
+    <h4>Add Products</h4>
+    {% if products.count %}
+      {% for product in products.all %}
+        <div class="card">
+          <div class="card-body">
+            <div class="card-title">
+              <p>{{ product.name }} by {{ product.brand }}</p>
+            </div>
+          </div>
+            <div class="card-action">
+              <form action="{% url 'assoc_product' routine.id product.id %}" method="POST">
+                {% csrf_token %}
+                <button type="submit" class="btn">Add</button>
+              </form>
+          </div>
+        </div>
+          {% endfor %}
+        {% else %}
+        <h5>All products added</h5>
+        {% endif %}
+  </div>
 </div>
 
 {% endblock %}

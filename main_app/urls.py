@@ -16,6 +16,8 @@ urlpatterns = [
     path('products/<int:pk>/delete/', views.ProductDelete.as_view(), name='products_delete'),
     path('accounts/signup/', views.signup, name='signup'),
     path('products/<int:product_id>/add_photo/', views.add_photo, name='add_photo'),
+    path('products/<int:product_id>/add_photo/', views.add_photo, name='add_photo'),
     path('skin-quiz/', views.skin_type_quiz, name='skin_quiz'),
-    path('results/', views.skin_type_results, name='skin_type_results')
+    path('results/', views.skin_type_results, name='skin_type_results'),
+    path('routines/<int:routine_id>/assoc_product/<int:product_id>/', views.assoc_product, name='assoc_product')
 ]

@@ -28,7 +28,17 @@ def routines_index(request):
 @login_required
 def routines_detail(request, routine_id):
     routine = Routine.objects.get(id=routine_id)
-    return render(request, 'routines/detail.html', { 'routine': routine })
+    id_list = routine.products.all().values_list('id')
+    products_routine_doesnt_have = Product.objects.exclude(id__in=id_list)
+    return render(request, 'routines/detail.html', { 
+        'routine': routine,
+        'products': products_routine_doesnt_have 
+    })
+
+@login_required
+def assoc_product(request, routine_id, product_id):
+    Routine.objects.get(id=routine_id).products.add(product_id)
+    return redirect('detail', routine_id=routine_id)
 
 @login_required
 def add_photo(request, product_id):
