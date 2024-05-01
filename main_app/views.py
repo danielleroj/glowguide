@@ -41,6 +41,11 @@ def assoc_product(request, routine_id, product_id):
     return redirect('detail', routine_id=routine_id)
 
 @login_required
+def unassoc_product(request, routine_id, product_id):
+    Routine.objects.get(id=routine_id).products.remove(product_id)
+    return redirect('detail', routine_id=routine_id)
+
+@login_required
 def add_photo(request, product_id):
   #capture form input
   photo_file =  request.FILES.get('photo-file', None)

@@ -23,6 +23,12 @@
     <div class="card">
       <div class="card-body">
         <h5 class="card-title">{{ product.name }}</h5>
+        <div class="card-action">
+          <form action="{% url 'unassoc_product' routine.id product.id %}" method="POST">
+            {% csrf_token %}
+            <input type="submit" value="Remove" class="btn red">
+          </form>
+        </div>
         <a
           href="#info{{ product.id }}"
           class="btn"
