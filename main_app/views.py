@@ -8,7 +8,7 @@ from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
-from .models import Routine, Product, Photo, SkinType
+from .models import Routine, Product, Photo, SkinType, SuggestedProduct
 
 
 # Create your views here.
@@ -108,11 +108,11 @@ def skin_type_results(request):
 
     skin_type = SkinType.objects.get(type_name=skin_type_name)
 
-    products = Product.objects.filter(suitable_for=skin_type)
+    suggested_products = SuggestedProduct.objects.filter(skin_types=skin_type)
 
     return render(request, 'skin/skin_type_results.html', {
         'skin_type': skin_type_name,
-        'products': products
+        'suggested_products': suggested_products
     })
 
 class RoutineCreate(LoginRequiredMixin, CreateView):
