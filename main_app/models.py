@@ -46,6 +46,7 @@ class Product(models.Model):
     brand = models.CharField(max_length=100)
     category = models.CharField(max_length=2, choices=CATEGORIES, default='AT')
     directions = models.TextField(null=True, blank=True)
+    ingredients = models.TextField(blank=True, null=True)
     suitable_for = models.ManyToManyField(SkinType, blank=True, help_text='What skin type is this product suitable for?')
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 

@@ -8,7 +8,7 @@ from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
-from .models import Routine, Product, Photo, SkinType, Profile
+from .models import Routine, Product, Photo, SkinType
 
 
 # Create your views here.
@@ -90,7 +90,6 @@ def skin_type_quiz(request):
 def skin_type_results(request):
     profile = request.user.profile
     skin_type_name = profile.skin_type 
-    summary = get_skin_type_summary(skin_type_name)
 
     skin_type = SkinType.objects.get(type_name=skin_type_name)
 
@@ -98,20 +97,8 @@ def skin_type_results(request):
 
     return render(request, 'skin/skin_type_results.html', {
         'skin_type': skin_type_name,
-        'summary': summary,
         'products': products
     })
-
-def get_skin_type_summary(skin_type):
-    summaries = {
-        'Oily': "Oily skin tends to have a glossy shine and visible pores.",
-        'Dry': "Dry skin can feel tight and might have flaky patches.",
-        'Normal': "Normal skin is well-balanced, neither too oily nor too dry.",
-        'Oily and Sensitive': "Oily and sensitive skin can be shiny and prone to irritation.",
-        'Dry and Sensitive': "Dry and sensitive skin is prone to redness and irritation."
-    }
-    return summaries.get(skin_type, "No summary available for this skin type.")
-
 
 class RoutineCreate(LoginRequiredMixin, CreateView):
     model = Routine

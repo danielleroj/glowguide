@@ -8,36 +8,47 @@ class SkinTypeForm(forms.ModelForm):
         ('dry', 'Dry'),
         ('normal', 'Normal'),
         ('oily', 'Oily'),
-    ], label="How would you describe your skin hydration?"
-    )
+    ], label="How does your skin feel after cleansing?")
 
-    reaction = forms.ChoiceField(choices=[
-        ('never_reacts', 'Never reacts'),
-        ('sometimes_reacts', 'Sometimes reacts'),
-        ('often_reacts', 'Often reacts'),
-        ('always_reacts', 'Always reacts'),
-    ], label="How often does your skin react negatively to new products or changes?"
-    )
+    sensitivity = forms.ChoiceField(choices=[
+        ('not_sensitive', 'Not Sensitive'),
+        ('mildly_sensitive', 'Mildly Sensitive'),
+        ('moderately_sensitive', 'Moderately Sensitive'),
+        ('very_sensitive', 'Very Sensitive'),
+    ], label="How sensitive is your skin?")
 
     breakouts = forms.ChoiceField(choices=[
-        ('never', 'Never'),
+        ('rarely', 'Rarely'),
         ('occasionally', 'Occasionally'),
         ('frequently', 'Frequently'),
         ('always', 'Always'),
-    ], label="How often do you experience breakouts?"
-    )
+    ], label="How often do you experience breakouts?")
 
-    t_zone = forms.ChoiceField(choices=[
+    oiliness = forms.ChoiceField(choices=[
         ('dry', 'Dry'),
         ('balanced', 'Balanced'),
         ('oily', 'Oily'),
-        ('very_oily', 'Very Oily'),
-    ], label="What is the condition of your T-zone (forehead, nose, chin)?"
-    )
+    ], label="How oily is your skin?")
+
+    texture = forms.ChoiceField(choices=[
+        ('smooth', 'Smooth'),
+        ('rough', 'Rough'),
+        ('bumpy', 'Bumpy'),
+        ('flaky', 'Flaky'),
+    ], label="What is the texture of your skin primarily?")
+
+    complexion_concerns = forms.MultipleChoiceField(choices=[
+        ('none', 'None'),
+        ('wrinkles', 'Wrinkles/Fine Lines'),
+        ('dark_spots', 'Dark Spots'),
+        ('redness', 'Redness'),
+        ('acne_scars', 'Acne Scars'),
+    ], label="Do you have concerns with any of the following?", widget=forms.CheckboxSelectMultiple)
+
 
     class Meta:
         model = Profile
-        fields = []
+        fields = ['hydration', 'sensitivity', 'breakouts', 'oiliness', 'texture', 'complexion_concerns']
 
     def save(self, *args, **kwargs):
         commit = kwargs.pop('commit', True)
@@ -50,15 +61,21 @@ class SkinTypeForm(forms.ModelForm):
 
     def determine_skin_type(self):
         # determine skin type based on combo of answers
-        data = self.cleaned_data
-        conditions = [data['hydration'], data['reaction'], data['breakouts'], data['t_zone']]
+        data = self.cleaned_data 
+        hydration = data['hydration']
+        sensitivity = data['sensitivity']
+        breakouts = data['breakouts']
+        oiliness = data['oiliness']
+        texture = data['texture']
+        complexion_concerns = data.get('complexion_concerns', [])
 
-        if 'very_oily' in conditions or 'oily' in conditions:
-            if 'always_reacts' in conditions or 'often_reacts' in conditions:
-                return 'Oily and Sensitive'
+        if sensitivity in ['very_sensitive', 'moderately_sensitive'] or 'redness' in complexion_concerns:
+            return 'Sensitive'
+        elif breakouts in ['frequently', 'always'] or oiliness == 'oily':
             return 'Oily'
-        elif 'very_dry' in conditions or 'dry' in conditions:
-            if 'always_reacts' in conditions or 'often_reacts' in conditions:
-                return 'Dry and Sensitive'
+        elif hydration in ['very_dry', 'dry'] or texture == 'flaky':
             return 'Dry'
-        return 'Normal'
+        elif oiliness == 'balanced' and texture == 'smooth' and 'wrinkles' not in complexion_concerns:
+            return 'Normal'
+        else:
+            return 'Combination'
