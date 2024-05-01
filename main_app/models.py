@@ -9,14 +9,23 @@ from django.contrib.auth.models import User
 def create_or_update_user_profile(sender, instance, created, **kwargs):
     if created:
         Profile.objects.create(user=instance)
-    instance.profile.save()
+    else:
+        if hasattr(instance, 'profile'):
+            instance.profile.save()
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    skin_type = models.CharField(max_length=100, blank=True)
+    skin_type = models.CharField(max_length=100, blank=True, default='Undefined')
+    quiz_completed = models.BooleanField(default=False)
 
     def __str__(self):
         return f"{self.user.username}'s Profile"
+    
+class SkinType(models.Model):
+    type_name = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.type_name
 
 class Product(models.Model):
     CATEGORIES = (
@@ -37,6 +46,7 @@ class Product(models.Model):
     brand = models.CharField(max_length=100)
     category = models.CharField(max_length=2, choices=CATEGORIES, default='AT')
     directions = models.TextField(null=True, blank=True)
+    suitable_for = models.ManyToManyField(SkinType, blank=True, help_text='What skin type is this product suitable for?')
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def __str__(self):
@@ -47,7 +57,7 @@ class Product(models.Model):
 
 class Routine(models.Model):
     name = models.CharField(max_length=100)
-    description = models.TextField(max_length=250)
+    description = models.CharField(max_length=250)
     products = models.ManyToManyField(Product)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 

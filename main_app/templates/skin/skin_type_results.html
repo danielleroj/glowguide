@@ -1,0 +1,15 @@
+{% extends 'base.html' %} {% block content %}
+
+<h1>Here are your results!</h1>
+
+<h2>Your skin type is {{ skin_type }}.</h2>
+<p>{{ summary }}</p>
+
+<h3>Recommended Products</h3>
+<ul>
+    {% for product in products %}   
+    <li>{{ product.name }} - {{product.category }}</li>
+    {% endfor %}
+</ul>
+
+{% endblock %}

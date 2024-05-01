@@ -1,3 +1,5 @@
+import os
+import boto3, uuid
 from django.shortcuts import render, redirect
 from .forms import SkinTypeForm
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
@@ -6,9 +8,8 @@ from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
-from .models import Routine, Product, Photo
+from .models import Routine, Product, Photo, SkinType, Profile
 
-import boto3, uuid
 
 # Create your views here.
 def home(request):
@@ -28,8 +29,6 @@ def routines_index(request):
 def routines_detail(request, routine_id):
     routine = Routine.objects.get(id=routine_id)
     return render(request, 'routines/detail.html', { 'routine': routine })
-
-import os
 
 @login_required
 def add_photo(request, product_id):
@@ -62,22 +61,56 @@ def signup(request):
             login(request, user)
             return redirect('index')
         else:
-            erorr_message = 'Invalid sign up - try again'
+            error_message = 'Invalid sign up - try again'
     form = UserCreationForm()
     context = {'form': form, 'error_mesage': error_message}
     return render(request, 'registration/signup.html', context)
+
+def post_signup_redirect(request):
+    # check if user has completed skin type quiz
+    if not request.user.profile.skin_type or request.user.profile.skin_type == 'Undefined':
+        return redirect('skin_type_quiz')
+    else:
+        return redirect('index')
 
 @login_required
 def skin_type_quiz(request):
     if request.method == 'POST':
         form = SkinTypeForm(request.POST, instance=request.user.profile)
         if form.is_valid():
-            form.save()
-            return redirect('some_view_name')
+            profile = form.save()
+            profile.quiz_completed = True
+            profile.save()
+            return redirect('skin_type_results')
     else:
         form = SkinTypeForm(instance=request.user.profile)
 
-    return render(request, 'your_template.html', {'form': form})
+    return render(request, 'skin/skin_quiz.html', {'form': form})
+
+def skin_type_results(request):
+    profile = request.user.profile
+    skin_type_name = profile.skin_type 
+    summary = get_skin_type_summary(skin_type_name)
+
+    skin_type = SkinType.objects.get(type_name=skin_type_name)
+
+    products = Product.objects.filter(suitable_for=skin_type)
+
+    return render(request, 'skin/skin_type_results.html', {
+        'skin_type': skin_type_name,
+        'summary': summary,
+        'products': products
+    })
+
+def get_skin_type_summary(skin_type):
+    summaries = {
+        'Oily': "Oily skin tends to have a glossy shine and visible pores.",
+        'Dry': "Dry skin can feel tight and might have flaky patches.",
+        'Normal': "Normal skin is well-balanced, neither too oily nor too dry.",
+        'Oily and Sensitive': "Oily and sensitive skin can be shiny and prone to irritation.",
+        'Dry and Sensitive': "Dry and sensitive skin is prone to redness and irritation."
+    }
+    return summaries.get(skin_type, "No summary available for this skin type.")
 
 
 class RoutineCreate(LoginRequiredMixin, CreateView):
