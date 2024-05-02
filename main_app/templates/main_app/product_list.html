@@ -1,4 +1,4 @@
-{% extends 'base.html' %} {% block content %}
+{% extends 'base.html' %} {% load static %} {% block content %}
 <h1>Product List</h1>
 
 <div class="row row-cols-1 row-cols-md-3 g-4">
@@ -7,13 +7,21 @@
     <div class="card h-100">
       <a href="{% url 'products_detail' product.id %}">
         <div class="card">
+          {% if product.photo_set.all %} 
           {% for photo in product.photo_set.all %}
           <img
             src="{{ photo.url }}"
             alt="{{ product.name }}"
             class="card-img-top img-fluid"
           />
-          {% endfor %}
+          {% endfor %} 
+          {% else %}
+          <img
+            src="{% static 'images/skincare_placeholder.webp' %}"
+            alt="skincare_placeholder"
+            class="card-img-top img-fluid"
+          />
+          {% endif %}
           <div class="card-body text-center">
             <h5 class="card-title">{{ product.name }}</h5>
             <h6 class="card-subtitle mb-2 text-muted">{{ product.brand }}</h6>
