@@ -25,14 +25,12 @@
   </head>
   <body class="d-flex flex-column min-vh-100">
     <header>
-      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <nav class="navbar navbar-expand-lg">
         <div class="container-fluid">
-            <div>
-              <a class="navbar-brand" href="{% url 'home' %}">GlowGuide</a>
-              {% if user.is_authenticated %}
-              <p>Hi, {{ user.username }}</p>
-              {% endif %}
-            </div>
+          <a class="navbar-brand" href="{% url 'home' %}">GlowGuide</a>
+          {% if user.is_authenticated %}
+          <p class="nav-item">Hi, {{ user.username }}</p>
+          {% endif %}
           <button
             class="navbar-toggler"
             type="button"
@@ -130,7 +128,7 @@
       </nav>
     </header>
     <main class="flex-fill">{% block content %} {% endblock %}</main>
-    <footer class="mt-auto bg-light text-center">
+    <footer class="mt-auto text-center">
       All Rights Reserved &copy; 2024 GlowGuide
     </footer>
     <script

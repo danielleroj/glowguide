@@ -97,17 +97,27 @@
 
 <h3>Recommended Products</h3>
 
-{% if suggested_products %} 
-{% for product in suggested_products %}
-<div class="product">
-  <h2>{{ product.name }}</h2>
-  <img src="{{ product.photo.url }}" alt="Image for {{ product.name }}">
-  <p>{{ product.brand }}</p>
-  <p>{{ product.get_category_display }}</p>
+{% if suggested_products %}
+<div class="row row-cols-1 row-cols-md-2 g-4">
+  {% for product in suggested_products %}
+  <div class="col">
+    <div class="card text-center" style="width: 300px">
+      <img
+        src="{{ product.photo.url }}"
+        alt="Image for {{ product.name }}"
+        class="card-img-top img-fluid"
+      />
+      <div class="card-body">
+        <h5 class="card-title">{{ product.name }}</h5>
+        <p class="card-text">{{ product.brand }}</p>
+      </div>
+      <div class="card-footer">
+        <p class="card-text">{{ product.get_category_display }}</p>
+      </div>
+    </div>
+  </div>
+  {% endfor %}
 </div>
-{% empty %}
-<p>No suggested products for this skin type yet.</p>
-{% endfor %} {% else %}
+{% else %}
 <p>No suggested products available.</p>
 {% endif %} {% endblock %}
-

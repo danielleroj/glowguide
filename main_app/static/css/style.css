@@ -1,4 +1,40 @@
 body {
-    font-family: 'Raleway', sans-serif;
-    background-color: red;
-  }
+    font-family: 'Roboto Slab', serif;
+}
+
+.navbar-brand {
+  font-family: 'Raleway Dots', sans-serif;
+  font-size: 2.5rem;
+}
+
+#logo-header {
+  font-family: 'Raleway', sans-serif;
+  font-weight: 100;
+  font-size: 5rem;
+}
+
+h1 {
+  font-family: 'Playfair Display', serif;
+}
+
+h2, h3, h4, h5 {
+  font-family: 'Montserrat', sans-serif;
+}
+
+nav, footer {
+  background-color: #4A4659;
+  color: white;
+}
+
+.nav-link, .navbar-brand {
+  color: white;
+}
+
+.nav-link:hover, .navbar-brand:hover {
+  color: #A6727C
+}
+
+.dropdown-item:active {
+  background-color: white;
+  color: #A6727C
+}

@@ -7,15 +7,13 @@
     <div class="card h-100">
       <a href="{% url 'products_detail' product.id %}">
         <div class="card">
-          {% if product.photo_set.all %} 
-          {% for photo in product.photo_set.all %}
+          {% if product.photo_set.all %} {% for photo in product.photo_set.all %}
           <img
             src="{{ photo.url }}"
             alt="{{ product.name }}"
             class="card-img-top img-fluid"
           />
-          {% endfor %} 
-          {% else %}
+          {% endfor %} {% else %}
           <img
             src="{% static 'images/skincare_placeholder.webp' %}"
             alt="skincare_placeholder"
