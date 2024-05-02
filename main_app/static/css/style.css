@@ -13,8 +13,16 @@ body {
   font-size: 5rem;
 }
 
+a {
+  text-decoration: none;
+  color: #A6727C;
+  font-family: 'Montserrat', sans-serif;
+}
+
 h1 {
   font-family: 'Playfair Display', serif;
+  text-align: center;
+  color: #734C61;
 }
 
 h2, h3, h4, h5 {

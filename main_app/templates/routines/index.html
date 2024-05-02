@@ -1,22 +1,24 @@
 {% extends 'base.html' %} {% block content %}
 
-<h1>Your Routines</h1>
+<div class="container">
+  <h1>Your Routines</h1>
+  <br /><br />
 
-{% for routine in routines %}
-<div class="row justify-content-center">
-  <div class="col-md-6">
-    <div class="card">
-      <div class="card-body">
-        <a href="{% url 'detail' routine.id %}">
-          <div class="card-body">
-            <h5 class="card-title">{{ routine.name }}</h5>
-            <p class="card-text">{{ routine.description }}</p>
-          </div>
-        </a>
+  <div class="row justify-content-center">
+    {% for routine in routines %}
+    <div class="col-sm-2">
+      <div class="card rounded-circle">
+        <div class="card-body">
+          <a href="{% url 'detail' routine.id %}">
+            <div class="card-body text-center">
+              <h5 class="card-title">{{ routine.name }}</h5>
+              <p class="card-text">{{ routine.description }}</p>
+            </div>
+          </a>
+        </div>
       </div>
     </div>
+    {% endfor %}
   </div>
 </div>
-{% endfor %} 
-
 {% endblock %}

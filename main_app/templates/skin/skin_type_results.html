@@ -2,6 +2,9 @@
 
 <h1>Here are your results!</h1>
 
+<a href="{% url 'skin_quiz' %}">Retake Quiz</a>
+
+
 <h2>Your skin type is {{ skin_type }}.</h2>
 {% if skin_type == 'Normal' %}
 <h2>Normal Skin</h2>
