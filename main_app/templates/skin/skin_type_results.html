@@ -96,14 +96,18 @@
 {% endif %}
 
 <h3>Recommended Products</h3>
-{% if suggested_products %} {% for product in suggested_products %}
+
+{% if suggested_products %} 
+{% for product in suggested_products %}
 <div class="product">
   <h2>{{ product.name }}</h2>
+  <img src="{{ product.photo.url }}" alt="Image for {{ product.name }}">
   <p>{{ product.brand }}</p>
-  <p>{{ product.category }}</p>
+  <p>{{ product.get_category_display }}</p>
 </div>
 {% empty %}
 <p>No suggested products for this skin type yet.</p>
 {% endfor %} {% else %}
 <p>No suggested products available.</p>
 {% endif %} {% endblock %}
+

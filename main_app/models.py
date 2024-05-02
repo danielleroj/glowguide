@@ -43,17 +43,19 @@ class SkinType(models.Model):
         return self.type_name
     
 class SuggestedProduct(models.Model):
-    name = models.CharField(max_length=50)
+    name = models.CharField(max_length=100)
     brand = models.CharField(max_length=50, default="Generic")
     category = models.CharField(max_length=2, choices=CATEGORIES, default='AT')
     skin_types = models.ManyToManyField(SkinType)
+    photo = models.ImageField(upload_to='suggested_products/', blank=True, null=True)
+
 
     def __str__(self):
         return self.name
 
 class Product(models.Model):
-    name = models.CharField(max_length=50)
-    brand = models.CharField(max_length=100)
+    name = models.CharField(max_length=100)
+    brand = models.CharField(max_length=50)
     category = models.CharField(max_length=2, choices=CATEGORIES, default='AT')
     directions = models.TextField(null=True, blank=True)
     ingredients = models.TextField(blank=True, null=True)
