@@ -1,21 +1,30 @@
-{% extends 'base.html' %}
-{% block content %}
-
+{% extends 'base.html' %} {% block content %}
 <h1>Product List</h1>
 
-{% for product in product_list %}
-    <a href="{% url 'products_detail' product.id %}">
+<div class="row row-cols-1 row-cols-md-3 g-4">
+  {% for product in product_list %}
+  <div class="col">
+    <div class="card h-100">
+      <a href="{% url 'products_detail' product.id %}">
         <div class="card">
-            <div class="card-body">
-                <span class="card-title">
-                    {{ product.name }}
-                </span>
-                <p>{{ product.brand }}</p>
-                <p>{{ product.get_category_display }}</p>
-                <p>{{ product.directions }}</p>
-            </div>
+          {% for photo in product.photo_set.all %}
+          <img
+            src="{{ photo.url }}"
+            alt="{{ product.name }}"
+            class="card-img-top img-fluid"
+          />
+          {% endfor %}
+          <div class="card-body text-center">
+            <h5 class="card-title">{{ product.name }}</h5>
+            <h6 class="card-subtitle mb-2 text-muted">{{ product.brand }}</h6>
+          </div>
         </div>
-    </a>
-{% endfor %}
-
+      </a>
+      <div class="card-footer">
+        <p class="card-text">{{ product.get_category_display }}</p>
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+</div>
 {% endblock %}
