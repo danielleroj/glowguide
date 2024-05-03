@@ -7,12 +7,6 @@ body {
   font-size: 2.5rem;
 }
 
-#logo-header {
-  font-family: 'Raleway', sans-serif;
-  font-weight: 100;
-  font-size: 5rem;
-}
-
 a {
   text-decoration: none;
   color: #A6727C;
@@ -45,4 +39,27 @@ nav, footer {
 .dropdown-item:active {
   background-color: white;
   color: #A6727C
+}
+
+.hero-section {
+  background-image: url("../images/hero-section.png");
+  background-size: cover;
+  background-position: center;
+  background-color: #734C61;
+  padding-top: 3rem;
+  padding-bottom: 5.6rem;
+}
+
+#hero-headline {
+  font-family: 'Playfair Display', serif;
+  color: white;
+  font-size: 6rem;
+}
+
+#hero-intro {
+  margin-left: 6rem;
+}
+
+#hero-img {
+  width: 40vmin;
 }

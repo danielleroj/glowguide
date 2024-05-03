@@ -1,5 +1,21 @@
-{% extends 'base.html' %} 
-
-{% block content %}
-<h1 id="logo-header" class="text-center">GlowGuide</h1>
+{% extends 'base.html' %} {% load static %} {% block content %}
+<div class="hero-section">
+  <div class="d-flex justify-content-center align-items-center">
+    <div class="col" id="hero-intro">
+      <h2 id="hero-headline">Master Your <br />Skincare Routine</h2>
+      <br />
+      <h3>Your personalized tool to <br />track and perfect your skincare.</h3>
+      <br />
+      <button>Get Started</button>
+    </div>
+    <div class="col d-flex justify-content-center">
+      <img
+        src="{% static 'images/hero-preview.png' %}"
+        alt="iphone"
+        id="hero-img"
+        class="img-fluid"
+      />
+    </div>
+  </div>
+</div>
 {% endblock %}
