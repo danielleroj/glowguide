@@ -33,7 +33,7 @@ GlowGuide is a skincare routine management application that helps users identify
 ## Getting Started
 
 <details open>
-    <summary>How to Play</summary>
+    <summary>How to Use</summary>
     <ul>
 <li>Taking the Skin Type Quiz: Upon your first login, you'll be prompted to take the skin type quiz. Answer the questions, and your skin type will be determined and saved to your profile.</li>
 <li>Adding Products: Navigate to the 'Products' section to add new products. Fill in the details such as name, brand, and category.</li>
