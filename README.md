@@ -18,7 +18,10 @@ GlowGuide is a skincare routine management application that helps users identify
 
 | Description              | Screenshot                                                                                                  |
 | ------------------------ | ----------------------------------------------------------------------------------------------------------- |
-| Startup                  | <div id="header" align="center"><img src="#" width="800" height="400"></div>  |
+| Landing Page                  | <div id="header" align="center"><img src="https://i.imgur.com/yUS17Zh.png" width="800" height="400"></div>  |
+| About                  | <div id="header" align="center"><img src="https://i.imgur.com/WfjgXTC.png" width="800" height="400"></div>  |
+| Routines                  | <div id="header" align="center"><img src="https://i.imgur.com/45TQcUQ.png" width="800" height="400"></div>  |
+| Products                  | <div id="header" align="center"><img src="https://i.imgur.com/JH1aSu0.png" width="800" height="400"></div>  |
 
 
 ## Technologies Used
