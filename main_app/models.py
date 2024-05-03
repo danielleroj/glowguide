@@ -30,7 +30,7 @@ def create_or_update_user_profile(sender, instance, created, **kwargs):
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    skin_type = models.CharField(max_length=30, blank=True, default='Undefined')
+    skin_type = models.CharField(max_length=30, null=True, default=None)
     quiz_completed = models.BooleanField(default=False)
 
     def __str__(self):

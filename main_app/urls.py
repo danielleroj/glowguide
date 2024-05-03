@@ -21,4 +21,5 @@ urlpatterns = [
     path('products/<int:product_id>/add_photo/', views.add_photo, name='add_photo'),
     path('skin-quiz/', views.skin_type_quiz, name='skin_quiz'),
     path('results/', views.skin_type_results, name='skin_type_results'),
+    path('account/', views.account, name='account'),
 ]

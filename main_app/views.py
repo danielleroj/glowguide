@@ -18,6 +18,9 @@ def home(request):
 def about(request):
     return render(request, 'about.html')
 
+def account(request):
+    return render(request, 'skin/account.html')
+
 @login_required
 def routines_index(request):
     routines = Routine.objects.filter(user=request.user)
@@ -74,7 +77,7 @@ def signup(request):
         if form.is_valid():
             user = form.save()
             login(request, user)
-            return redirect('index')
+            return post_signup_redirect(request)
         else:
             error_message = 'Invalid sign up - try again'
     form = UserCreationForm()
@@ -83,8 +86,8 @@ def signup(request):
 
 def post_signup_redirect(request):
     # check if user has completed skin type quiz
-    if not request.user.profile.skin_type or request.user.profile.skin_type == 'Undefined':
-        return redirect('skin_type_quiz')
+    if request.user.profile.skin_type is None:
+        return redirect('skin_quiz')
     else:
         return redirect('index')
 
@@ -111,6 +114,19 @@ def skin_type_results(request):
     suggested_products = SuggestedProduct.objects.filter(skin_types=skin_type)
 
     return render(request, 'skin/skin_type_results.html', {
+        'skin_type': skin_type_name,
+        'suggested_products': suggested_products
+    })
+
+def account(request):
+    profile = request.user.profile
+    skin_type_name = profile.skin_type 
+
+    skin_type = SkinType.objects.get(type_name=skin_type_name)
+
+    suggested_products = SuggestedProduct.objects.filter(skin_types=skin_type)
+
+    return render(request, 'skin/account.html', {
         'skin_type': skin_type_name,
         'suggested_products': suggested_products
     })
