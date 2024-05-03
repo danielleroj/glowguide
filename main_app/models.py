@@ -20,6 +20,7 @@ CATEGORIES = (
 )
 
 # Create your models here.
+# create a profile for whenever a user is created
 @receiver(post_save, sender=User)
 def create_or_update_user_profile(sender, instance, created, **kwargs):
     if created:
