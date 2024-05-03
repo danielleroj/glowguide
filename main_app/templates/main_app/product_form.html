@@ -1,10 +1,10 @@
 {% extends 'base.html' %} {% block content %} {% if object %}
-<h1>Edit {{object.name}}</h1>
+<h1 class="mt-4 mb-4">Edit {{object.name}}</h1>
 {% else %}
-<h1>Add Product</h1>
+<h1 class="mt-4 mb-4">Add Product</h1>
 {% endif %}
 
-<form action="" method="POST">
+<form action="" method="POST" class="ms-3">
   {% csrf_token %}
   <table>
     {{ form.as_table }}

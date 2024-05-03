@@ -1,17 +1,10 @@
 {% extends 'base.html' %} {% block content %}
 
-<h1>{{ routine.name }}</h1>
+<h1 class="mt-4 mb-4">{{ routine.name }}</h1>
 
-<div class="card">
+<div class="card text-center">
   <div class="card-body">
-    <h5 class="card-title">Routine Details</h5>
     <p class="card-text">{{ routine.description }}</p>
-  </div>
-  <div class="card-footer">
-    <a href="{% url 'routines_update' routine.id %}" class="btn">Edit</a>
-    <a href="{% url 'routines_delete' routine.id %}" class="btn btn-danger"
-      >Delete</a
-    >
   </div>
 </div>
 
@@ -22,25 +15,37 @@
     {% if routine.products.count %} {% for product in routine.products.all %}
     <div class="card">
       <div class="card-body">
-        <h5 class="card-title">{{ product.name }}</h5>
-        <div class="card-action">
-          <form action="{% url 'unassoc_product' routine.id product.id %}" method="POST">
+        <h5 class="card-title">{{ product.name }} by {{ product.brand }}</h5>
+        <div
+          class="card-action d-flex justify-content-between align-items-center"
+        >
+          <a
+            href="#info{{ product.id }}"
+            class="btn"
+            data-bs-toggle="collapse"
+            aria-expanded="false"
+            aria-controls="info{{ product.id }}"
+            >More Info</a
+          >
+          <form
+            action="{% url 'unassoc_product' routine.id product.id %}"
+            method="POST"
+            class="ms-auto"
+          >
             {% csrf_token %}
-            <input type="submit" value="Remove" class="btn red">
+            <input type="submit" value="Remove" class="btn text-danger" />
           </form>
         </div>
-        <a
-          href="#info{{ product.id }}"
-          class="btn"
-          data-bs-toggle="collapse"
-          aria-expanded="false"
-          aria-controls="info{{ product.id }}"
-          >More Info</a
-        >
       </div>
       <div id="info{{ product.id }}" class="collapse">
         <div class="card-body">
-          <p>{{ product.brand }}</p>
+          {% for photo in product.photo_set.all %}
+          <img
+            src="{{ photo.url }}"
+            alt="{{ product.name }}"
+            class="card-img-top img-fluid w-2"
+          />
+          {% endfor %}
           <p>{{ product.get_category_display }}</p>
           <p>{{ product.directions }}</p>
         </div>
@@ -52,26 +57,52 @@
   </div>
   <div class="col-6">
     <h4>Add Products</h4>
-    {% if products.count %}
-      {% for product in products.all %}
-        <div class="card">
-          <div class="card-body">
-            <div class="card-title">
-              <p>{{ product.name }} by {{ product.brand }}</p>
-            </div>
-          </div>
-            <div class="card-action">
-              <form action="{% url 'assoc_product' routine.id product.id %}" method="POST">
-                {% csrf_token %}
-                <button type="submit" class="btn">Add</button>
-              </form>
-          </div>
-        </div>
+    {% if products.count %} {% for product in products.all %}
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">{{ product.name }} by {{ product.brand }}</h5>
+      </div>
+      <div class="card-action">
+        <form
+          action="{% url 'assoc_product' routine.id product.id %}"
+          method="POST"
+        >
+          <a
+            href="#info{{ product.id }}"
+            class="btn"
+            data-bs-toggle="collapse"
+            aria-expanded="false"
+            aria-controls="info{{ product.id }}"
+            >More Info</a
+          >
+          {% csrf_token %}
+          <button type="submit" class="btn">Add</button>
+        </form>
+      </div>
+      <div id="info{{ product.id }}" class="collapse">
+        <div class="card-body">
+          {% for photo in product.photo_set.all %}
+          <img
+            src="{{ photo.url }}"
+            alt="{{ product.name }}"
+            class="card-img-top img-fluid w-2"
+          />
           {% endfor %}
-        {% else %}
-        <h5>All products added</h5>
-        {% endif %}
+          <p>{{ product.get_category_display }}</p>
+          <p>{{ product.directions }}</p>
+        </div>
+      </div>
+    </div>
+    {% endfor %} {% else %}
+    <h5>All products added</h5>
+    {% endif %}
   </div>
+</div>
+<div class="text-center mt-5">
+  <a href="{% url 'routines_update' routine.id %}" class="btn">Edit</a>
+  <a href="{% url 'routines_delete' routine.id %}" class="btn btn-danger"
+    >Delete</a
+  >
 </div>
 
 {% endblock %}
