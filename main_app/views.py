@@ -174,7 +174,7 @@ class ProductCreate(LoginRequiredMixin, CreateView):
 
 class ProductUpdate(LoginRequiredMixin, UpdateView):
     model = Product
-    fields = '__all__'
+    fields = ['name', 'brand', 'category', 'directions', 'ingredients', 'suitable_for']
 
 class ProductDelete(LoginRequiredMixin, DeleteView):
     model = Product
