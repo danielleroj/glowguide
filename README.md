@@ -4,68 +4,54 @@ GitHub readme
 
 #### <p align="center">Created by [Danielle Rojas](https://www.linkedin.com/in/daniellerojas1/)</p>
 
+### <p align="center">[CLICK TO VIEW APP](https://glowguide-4437e9187ac2.herokuapp.com/)</p>
 
-### <p align="center">[CLICK TO VIEW APP](https://danielleroj.github.io/spaceman/)</p>
+GlowGuide is a skincare routine management application that helps users identify their skin type through a quiz and suggests appropriate skincare products. It allows users to manage their skincare routines by adding, creating, and deleting products and routines tailored to their needs.
 
+### Features
 
-Odessi will be a web app designed to help users plan and organize their travel itineraries/experiences. Users will be able to create custom travel itineraries. 
+- **User authentication** with Django user authentication
+- **Skin Type Quiz**: Users can take a quiz to determine their skin type. The results are used to suggest the most suitable skincare products.
+- **Product Management**: Users can add new products to their collection, view details about each product, and delete products they no longer use.
+- **Routine Management**: Users can create daily or weekly skincare routines, modify existing routines, and delete routines that are no longer relevant.
+- Deployment on Heroku
 
-### Future Features
-* User authentication with Google Sign-In
-* Create, view, edit, and delete travel itineraries
-* Search for and add locations/attractions
-* Responsive design for mobile and desktop use
-* Deployment on Heroku
-
--
 ## Screenshots
 
-| Description | Screenshot |
-| --- | --- |
-| Startup | <div id="header" align="center"><img src="https://i.imgur.com/kZfEIFx.jpg" width="800" height="400"></div> |
-| Correct Word | <div id="header" align="center"><img src="https://i.imgur.com/cr9NlVU.jpeg" width="800" height="400"></div> |
-| Out of Guesses/Lose game | <div id="header" align="center"><img src="https://i.imgur.com/o7Nbk7K.jpeg" width="800" height="400"></div> |
-| Win Game | <div id="header" align="center"><img src="https://i.imgur.com/e10jqRo.jpeg" width="800" height="400"></div> |
+| Description              | Screenshot                                                                                                  |
+| ------------------------ | ----------------------------------------------------------------------------------------------------------- |
+| Startup                  | <div id="header" align="center"><img src="#" width="800" height="400"></div>  |
+
 
 ## Technologies Used
 
-![JavaScript](https://img.shields.io/badge/-JavaScript-05122A?style=flat&logo=javascript)
-![HTML5](https://img.shields.io/badge/-HTML5-05122A?style=flat&logo=html5) ![CSS3](https://img.shields.io/badge/-CSS-05122A?style=flat&logo=css3) ![tsParticles](https://img.shields.io/badge/-tsParticles-black) ![VSCode](https://img.shields.io/badge/-VS_Code-05122A?style=flat&logo=visualstudio) ![Canva](https://img.shields.io/badge/-Canva-05122A?style=flat&logo=canva) 
- ![Trello](https://img.shields.io/badge/-Trello-05122A?style=flat&logo=trello)
+![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white) ![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white) ![Python](https://img.shields.io/badge/Python-FFD43B?style=for-the-badge&logo=python&logoColor=blue)
+  ![Django](https://img.shields.io/badge/Django-092E20?style=for-the-badge&logo=django&logoColor=green) ![Bootstrap](https://img.shields.io/badge/Bootstrap-563D7C?style=for-the-badge&logo=bootstrap&logoColor=white) ![AWS S3](https://img.shields.io/badge/Amazon_AWS-FF9900?style=for-the-badge&logo=amazonaws&logoColor=white) ![Git](https://img.shields.io/badge/GIT-E44C30?style=for-the-badge&logo=git&logoColor=white) ![VSCode](https://img.shields.io/badge/-VS_Code-05122A?style=flat&logo=visualstudio) ![Heroku](https://img.shields.io/badge/Heroku-430098?style=for-the-badge&logo=heroku&logoColor=white) ![Canva](https://img.shields.io/badge/Canva-%2300C4CC.svg?&style=for-the-badge&logo=Canva&logoColor=white)
+![Trello](https://img.shields.io/badge/Trello-0052CC?style=for-the-badge&logo=trello&logoColor=white)
 
 ## Getting Started
 
-
 <details open>
     <summary>How to Play</summary>
-    <ol>
-        <li>Guess letters to unveil the hidden word.</li>
-        <li>Utilize the progress image and guess count to gauge progress.</li>
-        <li>Navigate through the words sequentially, starting with shorter ones.</li>
-        <li>Either:</li>
-            <ul>
-            <li>After succesfully completing the current word, continue the game.</li>
-            <li>Or after using up all the guesses, lose the game and restart.</li>
-            </ul>
-        <li>Aim for a flawless completion of the game to reach the game's conclusion.</li>
-    </ol>
+    <ul>
+<li>Taking the Skin Type Quiz: Upon your first login, you'll be prompted to take the skin type quiz. Answer the questions, and your skin type will be determined and saved to your profile.</li>
+<li>Adding Products: Navigate to the 'Products' section to add new products. Fill in the details such as name, brand, and category.</li>
+<li>Creating Routines: Go to the 'Routines' section to create a new routine. You can add products from your list and specify when to use them (e.g., morning or night).</li>
+<li>Managing Routines: Edit or delete existing routines by selecting the routine you want to modify and choosing the appropriate action.</li>
+</ul>
 </details>
--
 <detail open>
-    <summary> Project Planning Link</summary>
-    Link to full project planning on <a href="https://trello.com/b/TAqh0C3Z/odessi-project-2">Trello</a>.
-</details>
 
--
 <details>
-    <summary>Deployment Link</summary>
-    <a href="https://danielleroj.github.io/spaceman/">danielleroj.github.io/spaceman/</a>
+      <summary>Deployment Link</summary>
+      <a href="https://glowguide-4437e9187ac2.herokuapp.com/">GlowGuide-Heroku</a>
 </details>
 
 ## Next Steps
-### Future Improvements/Features
-- [ ] Customization of audio player.
-- [ ] Player's highest ever score (completed words) dispayed.
-- [ ] Move on to a next set of words after winning game, possibly with a different theme and more challenging. 
--
 
+### Future Improvements/Features
+
+- [ ] Mobile/small-screen responsiveness.
+- [ ] Arrange product order in routine.
+- [ ] Add suggested products to a wishlist.
+- [ ] Review/rate products for other community members to see.
