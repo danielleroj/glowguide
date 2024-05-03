@@ -1,5 +1,3 @@
-GitHub readme
-
 # <p align="center">GLOWGUIDE</p>
 
 #### <p align="center">Created by [Danielle Rojas](https://www.linkedin.com/in/daniellerojas1/)</p>
