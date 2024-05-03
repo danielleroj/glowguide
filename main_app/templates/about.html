@@ -1,11 +1,56 @@
-{% extends "base.html" %}
-{% block content %}
+{% extends "base.html" %} {% load static %} {% block content %}
 
-<h1>About GlowGuide</h1>
-<p>
-  Lorem ipsum, dolor sit amet consectetur adipisicing elit. Corrupti aut ex
-  laboriosam, excepturi necessitatibus accusamus, voluptas porro aliquid dolor
-  veniam ad expedita dolore, voluptatum eos sint. Eaque modi repudiandae magnam.
-</p>
+<br />
+<h1 class="text-center">
+  Finally - a way to track and perfect your skincare routine effortlessly.
+</h1>
+<br />
 
-{% endblock %}
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 d-flex align-items-center justify-content-center">
+      <div class="text-center">
+        <img
+          src="{% static 'images/AdobeStock_422501065.jpeg' %}"
+          alt="Image"
+          class="img-fluid"
+        />
+      </div>
+    </div>
+    <div class="col-md-6 d-flex align-items-center justify-content-center">
+      <div class="text-center">
+        <h5>
+          At <span style="color: #734c61">GlowGuide</span>, we empower you to
+          take control of your skincare journey. Our mission is to simplify the
+          process of managing and personalizing your skincare routine. With our
+          intuitive platform, you can discover your skin type, choose the right
+          products, and tailor routines that evolve as you do. We’re here to
+          help you feel confident in your skin by providing the tools and
+          insights needed for a healthier, glowing complexion. Join us to
+          transform your skincare experience into something as unique as you
+          are—because great skin starts with understanding it.
+        </h5>
+      </div>
+    </div>
+  </div>
+  <br />
+  <h3 class="text-center">The Story Behind GlowGuide</h3>
+  <div>
+    <p class="text-center" style="margin: auto; width: 120vh;">
+      GlowGuide began from a personal need—my quest to demystify my skincare
+      routine. Struggling to keep track of which products to use and when,
+      especially with their specific directions, I realized the necessity for a
+      streamlined approach to managing skincare. That's how GlowGuide was born—a
+      platform that not only helps you organize your skincare products but also
+      enhances your understanding of them.<br><br>It started as a simple tool for
+      tracking routines and evolved into a comprehensive system where users can
+      discover their skin type, personalize their skincare routines, and adapt
+      as their skin changes. Today, GlowGuide is more than a tool; it's a
+      community where skincare becomes simple, personal, and empowering. Join us
+      and transform the way you care for your skin, ensuring every day is a step
+      toward healthier, glowing skin.
+    </p>
+  </div>
+
+  {% endblock %}
+</div>
