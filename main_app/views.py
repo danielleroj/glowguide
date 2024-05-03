@@ -33,9 +33,11 @@ def routines_detail(request, routine_id):
     routine = Routine.objects.get(id=routine_id)
     id_list = routine.products.all().values_list('id')
     products_routine_doesnt_have = Product.objects.exclude(id__in=id_list)
+    products_created_by_user = products_routine_doesnt_have.filter(user=request.user)
+
     return render(request, 'routines/detail.html', { 
         'routine': routine,
-        'products': products_routine_doesnt_have 
+        'products': products_created_by_user 
     })
 
 @login_required
@@ -139,6 +141,11 @@ class RoutineCreate(LoginRequiredMixin, CreateView):
     def form_valid(self, form):
         form.instance.user = self.request.user
         return super().form_valid(form)
+    
+    def get_form(self, form_class=None):
+        form = super().get_form(form_class)
+        form.fields['products'].queryset = form.fields['products'].queryset.filter(user=self.request.user)
+        return form
 
 class RoutineUpdate(LoginRequiredMixin, UpdateView):
     model = Routine
