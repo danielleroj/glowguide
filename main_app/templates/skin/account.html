@@ -1,132 +1,138 @@
 {% extends 'base.html' %} {% block content %}
 
-<h1>Hi, {{ user.username }}</h1>
-
-<div class="ms-5">
-  <h2>Your skin type is {{ skin_type }}.</h2>
+<div class="mt-4 mb-4">
+  <h1>Hi, {{ user.username }}</h1>
   <br />
-  {% if skin_type == 'Normal' %}
-  <h2>Normal Skin</h2>
-  <p>
-    Your skin is well-balanced, with neither excessive oil nor dry patches. It
-    feels smooth and has a regular texture with minimal imperfections.
-  </p>
-  <h3>Care Tips:</h3>
-  <ul>
-    <li>
-      Maintain your skin’s health with a balanced skincare routine that includes
-      gentle cleansing, regular moisturizing, and sun protection.
-    </li>
-    <li>Occasional light exfoliation can help maintain its glow.</li>
-  </ul>
+  <div class="ms-5">
+    <h2>Your skin type is {{ skin_type }}.</h2>
+    <br />
+    {% if skin_type == 'Normal' %}
+    <h2>Normal Skin</h2>
+    <p>
+      Your skin is well-balanced, with neither excessive oil nor dry patches. It
+      feels smooth and has a regular texture with minimal imperfections.
+    </p>
+    <h3>Care Tips:</h3>
+    <ul>
+      <li>
+        Maintain your skin’s health with a balanced skincare routine that
+        includes gentle cleansing, regular moisturizing, and sun protection.
+      </li>
+      <li>Occasional light exfoliation can help maintain its glow.</li>
+    </ul>
 
-  {% elif skin_type == 'Dry' %}
-  <h2>Dry Skin</h2>
-  <p>
-    Your skin often feels tight and may exhibit flakiness or scaling. It can
-    appear dull due to a lack of moisture and might be more prone to
-    sensitivity.
-  </p>
-  <h3>Care Tips:</h3>
-  <ul>
-    <li>
-      Focus on hydration by using rich moisturizers and creams that contain
-      hyaluronic acid and ceramides.
-    </li>
-    <li>
-      Avoid hot showers and harsh cleansers that can strip your skin of its
-      natural oils.
-    </li>
-  </ul>
+    {% elif skin_type == 'Dry' %}
+    <h2>Dry Skin</h2>
+    <p>
+      Your skin often feels tight and may exhibit flakiness or scaling. It can
+      appear dull due to a lack of moisture and might be more prone to
+      sensitivity.
+    </p>
+    <h3>Care Tips:</h3>
+    <ul>
+      <li>
+        Focus on hydration by using rich moisturizers and creams that contain
+        hyaluronic acid and ceramides.
+      </li>
+      <li>
+        Avoid hot showers and harsh cleansers that can strip your skin of its
+        natural oils.
+      </li>
+    </ul>
 
-  {% elif skin_type == 'Oily' %}
-  <h2>Oily Skin</h2>
-  <p>
-    Your skin tends to produce excess oil, leading to a shiny complexion and
-    making it prone to breakouts and enlarged pores.
-  </p>
-  <h3>Care Tips:</h3>
-  <ul>
-    <li>Use oil-free and non-comedogenic products to avoid clogging pores.</li>
-    <li>
-      Incorporate a regular cleansing routine, use a gentle exfoliant to manage
-      oil levels, and don’t skip moisturizer—opt for a lightweight, water-based
-      formula.
-    </li>
-  </ul>
+    {% elif skin_type == 'Oily' %}
+    <h2>Oily Skin</h2>
+    <p>
+      Your skin tends to produce excess oil, leading to a shiny complexion and
+      making it prone to breakouts and enlarged pores.
+    </p>
+    <h3>Care Tips:</h3>
+    <ul>
+      <li>
+        Use oil-free and non-comedogenic products to avoid clogging pores.
+      </li>
+      <li>
+        Incorporate a regular cleansing routine, use a gentle exfoliant to
+        manage oil levels, and don’t skip moisturizer—opt for a lightweight,
+        water-based formula.
+      </li>
+    </ul>
 
-  {% elif skin_type == 'Combination' %}
-  <h2>Combination Skin</h2>
-  <p>
-    Combination skin features a mix of oily and dry zones, typically with
-    oiliness in the T-zone (forehead, nose, and chin) and dryness on the cheeks.
-  </p>
-  <h3>Care Tips:</h3>
-  <ul>
-    <li>
-      Treat different areas with targeted products—lighter, oil-control products
-      for the T-zone and richer moisturizers for dry areas.
-    </li>
-    <li>
-      Balancing the skin’s needs can be key to managing combination skin
-      effectively.
-    </li>
-  </ul>
+    {% elif skin_type == 'Combination' %}
+    <h2>Combination Skin</h2>
+    <p>
+      Combination skin features a mix of oily and dry zones, typically with
+      oiliness in the T-zone (forehead, nose, and chin) and dryness on the
+      cheeks.
+    </p>
+    <h3>Care Tips:</h3>
+    <ul>
+      <li>
+        Treat different areas with targeted products—lighter, oil-control
+        products for the T-zone and richer moisturizers for dry areas.
+      </li>
+      <li>
+        Balancing the skin’s needs can be key to managing combination skin
+        effectively.
+      </li>
+    </ul>
 
-  {% elif skin_type == 'Sensitive' %}
-  <h2>Sensitive Skin</h2>
-  <p>
-    Your skin is reactive and can be easily irritated by environmental factors,
-    products, or stress, often resulting in redness, itching, or rashes.
-  </p>
-  <h3>Care Tips:</h3>
-  <ul>
-    <li>
-      Opt for hypoallergenic and fragrance-free products to minimize potential
-      irritations.
-    </li>
-    <li>
-      Be gentle with your skin, avoiding aggressive exfoliants and opting for
-      soothing ingredients like aloe vera and chamomile.
-    </li>
-  </ul>
-  {% else %}
-  <h2>Uncategorized Skin Type</h2>
-  <p>
-    We are unable to determine a specific skin type based on the answers
-    provided. Please consult a dermatologist for more detailed analysis.
-  </p>
-  {% endif %}<br />
-  <a href="{% url 'skin_quiz' %}" class="justify-content-center"
-    >TAKE SKIN TYPE QUIZ</a
-  >
-</div>
+    {% elif skin_type == 'Sensitive' %}
+    <h2>Sensitive Skin</h2>
+    <p>
+      Your skin is reactive and can be easily irritated by environmental
+      factors, products, or stress, often resulting in redness, itching, or
+      rashes.
+    </p>
+    <h3>Care Tips:</h3>
+    <ul>
+      <li>
+        Opt for hypoallergenic and fragrance-free products to minimize potential
+        irritations.
+      </li>
+      <li>
+        Be gentle with your skin, avoiding aggressive exfoliants and opting for
+        soothing ingredients like aloe vera and chamomile.
+      </li>
+    </ul>
+    {% else %}
+    <h2>Uncategorized Skin Type</h2>
+    <p>
+      We are unable to determine a specific skin type based on the answers
+      provided. Please consult a dermatologist for more detailed analysis.
+    </p>
+    {% endif %}<br />
+    <a href="{% url 'skin_quiz' %}" class="justify-content-center"
+      >TAKE SKIN TYPE QUIZ</a
+    >
+  </div>
 
-<h3 class="text-center">Recommended Products</h3>
-<div class="d-flex justify-content-center">
-  {% if suggested_products %}
-  <div class="row row-cols-1 row-cols-md-2 g-4">
-    {% for product in suggested_products %}
-    <div class="col">
-      <div class="card text-center" style="width: 300px">
-        <img
-          src="{{ product.photo.url }}"
-          alt="Image for {{ product.name }}"
-          class="card-img-top img-fluid"
-        />
-        <div class="card-body">
-          <h5 class="card-title">{{ product.name }}</h5>
-          <p class="card-text">{{ product.brand }}</p>
-        </div>
-        <div class="card-footer">
-          <p class="card-text">{{ product.get_category_display }}</p>
+  <h3 class="text-center">Recommended Products</h3>
+  <div class="d-flex justify-content-center">
+    {% if suggested_products %}
+    <div class="row row-cols-1 row-cols-md-2 g-4">
+      {% for product in suggested_products %}
+      <div class="col">
+        <div class="card text-center" style="width: 300px">
+          <img
+            src="{{ product.photo.url }}"
+            alt="Image for {{ product.name }}"
+            class="card-img-top img-fluid"
+          />
+          <div class="card-body">
+            <h5 class="card-title">{{ product.name }}</h5>
+            <p class="card-text">{{ product.brand }}</p>
+          </div>
+          <div class="card-footer">
+            <p class="card-text">{{ product.get_category_display }}</p>
+          </div>
         </div>
       </div>
+      {% endfor %}
     </div>
-    {% endfor %}
+    {% else %}
+    <p>No suggested products available.</p>
+    {% endif %}
   </div>
-  {% else %}
-  <p>No suggested products available.</p>
-  {% endif %}
 </div>
 {% endblock %}
