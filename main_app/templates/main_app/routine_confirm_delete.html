@@ -1,12 +1,15 @@
-{% extends 'base.html' %} 
-{% block content %}
+{% extends 'base.html' %} {% block content %}
 
-<h4>Are you sure you want to delete {{ object.name }}?</h4>
+<div class="m-4 text-center d-grid gap-3">
+  <h1>Delete Routine</h1>
 
-<form action="" method="POST">
+  <h2>Are you sure you want to delete {{ object.name }}?</h2>
+
+  <form action="" method="POST">
     {% csrf_token %}
-    <input type="submit" value="Yes - Delete!" class="btn btn-danger">
+    <input type="submit" value="Yes - Delete!" class="btn btn-danger" />
     <a href="{% url 'detail' routine.id %}" class="btn">Nope, Cancel</a>
-</form>
+  </form>
+</div>
 
 {% endblock %}
