@@ -105,6 +105,7 @@ def skin_type_quiz(request):
 
     return render(request, 'skin/skin_quiz.html', {'form': form})
 
+@login_required
 def skin_type_results(request):
     profile = request.user.profile
     skin_type_name = profile.skin_type 
@@ -118,6 +119,7 @@ def skin_type_results(request):
         'suggested_products': suggested_products
     })
 
+@login_required
 def account(request):
     profile = request.user.profile
     skin_type_name = profile.skin_type 
@@ -159,6 +161,9 @@ class ProductDetail(LoginRequiredMixin, DetailView):
 class ProductCreate(LoginRequiredMixin, CreateView):
     model = Product
     fields = ['name', 'brand', 'category', 'directions', 'ingredients', 'suitable_for']
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super().form_valid(form)
 
 class ProductUpdate(LoginRequiredMixin, UpdateView):
     model = Product
