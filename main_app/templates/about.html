@@ -1,11 +1,13 @@
 {% extends "base.html" %} {% load static %} {% block content %}
 
-<h1 class="text-center mt-4">
-  Finally - a way to track and perfect your skincare routine effortlessly.
-</h1>
-<br />
+<body style="background-image: url('{% static 'images/hero-section.png' %}');">
 
-<div class="container">
+  
+  <div class="container" style="background-color: white; border-radius: .5%;">
+    <h1 class="text-center mt-4">
+      Finally - a way to track and perfect your skincare routine effortlessly.
+    </h1>
+    <br />
   <div class="row">
     <div class="col-md-6 d-flex align-items-center justify-content-center">
       <div class="text-center">
@@ -35,7 +37,7 @@
   <br />
   <h3 class="text-center">The Story Behind GlowGuide</h3>
   <div>
-    <p class="text-center" style="margin: auto; width: 80%;">
+    <p class="text-center">
       GlowGuide began from a personal need—my quest to demystify my skincare
       routine. Struggling to keep track of which products to use and when,
       especially with their specific directions, I realized the necessity for a
@@ -48,8 +50,9 @@
       community where skincare becomes simple, personal, and empowering. Join us
       and transform the way you care for your skin, ensuring every day is a step
       toward healthier, glowing skin.
-    </p>
+    </p><br>
   </div>
+</body>
 
   {% endblock %}
 </div>

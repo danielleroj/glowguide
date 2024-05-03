@@ -63,3 +63,9 @@ nav, footer {
 #hero-img {
   width: 40vmin;
 }
+
+.btn-lg {
+  background-color: #A6727C;
+  color: white;
+}
+
