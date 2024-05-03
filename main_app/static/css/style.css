@@ -69,3 +69,11 @@ nav, footer {
   color: white;
 }
 
+.product-table td {
+  padding-bottom: 10px;
+}
+
+.submit {
+  background-color: #D9A7A7;
+  color: black;
+}

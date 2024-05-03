@@ -4,12 +4,20 @@
 <h1 class="mt-4 mb-4">Add Product</h1>
 {% endif %}
 
-<form action="" method="POST" class="ms-3">
-  {% csrf_token %}
-  <table>
-    {{ form.as_table }}
-  </table>
-  <input type="submit" value="Submit" class="btn" />
-</form>
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <form action="" method="POST" class="ms-3">
+        {% csrf_token %}
+        <table class="product-table">
+          {{ form.as_table }}
+        </table>
+        <div class="text-center">
+          <input type="submit" value="Submit" class="btn submit" />
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
 
 {% endblock %}
